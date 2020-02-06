@@ -8,7 +8,7 @@
   <p:archive-manifest/>
 
   <!-- Change the manifest so it includes the new logo: -->
-  <p:insert match="/*" position="last-child" name="amended-manifest">
+  <p:insert match="/*" position="last-child" name="changed-manifest">
     <p:with-input port="insertion">
       <c:entry href="{ resolve-uri('additional-images/kanava.jpg', static-base-uri()) }" name="img/kanava.jpg"/>
     </p:with-input>
@@ -24,7 +24,7 @@
   <p:for-each>
     <p:if test="ends-with(p:document-property(., 'base-uri'), '/demo.html')">
       <p:insert match="html:body" position="last-child" xmlns="http://www.w3.org/1999/xhtml">
-        <p:with-input port="insertion">
+        <p:with-input port="insertion" xmlns="http://www.w3.org/1999/xhtml">
           <p>New logo:</p>
           <p>
             <img src="img/kanava.jpg" alt="New XProc logo" width="10%"/>
@@ -36,7 +36,7 @@
 
   <!-- Create a new archive and store it: -->
   <p:archive>
-    <p:with-input port="manifest" pipe="result@amended-manifest"/>
+    <p:with-input port="manifest" pipe="result@changed-manifest"/>
   </p:archive>
   <p:store href="build/zip-result.zip"/>
 
