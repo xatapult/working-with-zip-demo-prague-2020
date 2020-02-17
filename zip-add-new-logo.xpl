@@ -2,7 +2,7 @@
   exclude-inline-prefixes="#all" name="add-new-logo">
 
   <p:input port="source" href="input/input.zip"/>
-  <p:output port="result" serialization="map{ 'indent': true() }"/>
+  <p:output port="result" serialization="map{ 'indent': true() }" sequence="true"/>
 
   <!-- Get the existing manifest: -->
   <p:archive-manifest/>
@@ -23,7 +23,7 @@
   <!-- Add a reference to the new logo to the main file: -->
   <p:for-each>
     <p:if test="ends-with(p:document-property(., 'base-uri'), '/demo.html')">
-      <p:insert match="html:body" position="last-child" xmlns="http://www.w3.org/1999/xhtml">
+      <p:insert match="html:body" position="last-child" >
         <p:with-input port="insertion" xmlns="http://www.w3.org/1999/xhtml">
           <p>New logo:</p>
           <p>
